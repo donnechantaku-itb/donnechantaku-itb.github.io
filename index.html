@@ -93,11 +93,10 @@ ul.plain li{padding:16px 0;border-bottom:1px solid var(--line)}
 ul.plain li:first-child{border-top:1px solid var(--line)}
 ul.plain li p{margin:0;color:var(--ink-soft);font-size:.98rem}
 
-.plat-head{font-size:.95rem;font-weight:600;color:var(--ink-soft);margin:0 0 10px}
-.platforms{margin:0;display:grid;gap:10px}
-.platforms>div{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--ok);border-radius:8px;padding:12px 16px}
-.platforms dt{font-weight:800;font-size:1.1rem;font-variation-settings:"wdth" 110;margin:0 0 2px}
-.platforms dd{margin:0;color:var(--ink-soft);font-size:.94rem;line-height:1.5}
+.products{display:flex;flex-wrap:wrap;gap:10px;align-content:flex-start}
+.products a{font-weight:700;font-size:clamp(1.2rem,2.2vw,1.55rem);padding:10px 18px;border:2px solid var(--ink);border-radius:8px;background:var(--panel);font-variation-settings:"wdth" 110;text-decoration:none;transition:background .15s,color .15s}
+.products a:hover{background:var(--ink);color:#fff}
+.products-note{font-size:.9rem;color:var(--ink-soft);margin-top:16px}
 
 /* migration */
 .matrix{border-collapse:separate;border-spacing:4px;font-size:.8rem;margin-top:4px}
@@ -215,15 +214,10 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
             <li><h3 data-i18n="svc.4.t">Beheer en troubleshooting</h3><p data-i18n="svc.4.d">Analyse van vastgelopen of trage batchketens en ondersteuning van uw operationele teams.</p></li>
           </ul>
           <div>
-            <h4 class="plat-head" data-i18n="svc.platforms">Platformen</h4>
-            <dl class="platforms">
-              <div><dt>Automic</dt><dd data-i18n="p.automic">Workload-automationplatform van Broadcom (voorheen UC4) voor het automatiseren van jobs en workflows over besturingssystemen, applicaties en cloud heen.</dd></div>
-              <div><dt>AutoSys</dt><dd data-i18n="p.autosys">Eventgestuurde jobscheduler van Broadcom (voorheen CA). Jobs, afhankelijkheden en kalenders worden gedefinieerd in JIL.</dd></div>
-              <div><dt>Stonebranch</dt><dd data-i18n="p.uac">Universal Automation Center (UAC): modern platform voor workload automation en orkestratie in on-premise, cloud- en hybride omgevingen.</dd></div>
-              <div><dt>Enterprise Orchestrator</dt><dd data-i18n="p.eo">Orkestratie van end-to-end bedrijfs- en IT-processen over applicaties en platformen heen.</dd></div>
-              <div><dt>TWS</dt><dd data-i18n="p.tws">IBM Workload Scheduler (voorheen Tivoli Workload Scheduler) voor z/OS-mainframe en gedistribueerde systemen.</dd></div>
-              <div><dt>CA 7</dt><dd data-i18n="p.ca7">Broadcom CA 7: batchscheduler voor het z/OS-mainframe.</dd></div>
-            </dl>
+            <div class="products" aria-label="Platformen">
+              <a href="platform.html?p=automic" data-plat="automic">Automic</a><a href="platform.html?p=autosys" data-plat="autosys">AutoSys</a><a href="platform.html?p=stonebranch" data-plat="stonebranch">Stonebranch</a><a href="platform.html?p=eo" data-plat="eo">Enterprise Orchestrator</a><a href="platform.html?p=tws" data-plat="tws">TWS</a><a href="platform.html?p=ca7" data-plat="ca7">CA 7</a>
+            </div>
+            <p class="products-note" data-i18n="svc.hint">Klik op een platform voor een korte uitleg.</p>
           </div>
         </div>
       </div>
@@ -333,7 +327,7 @@ nl:{
  "web.3.t":"Snel en mobielvriendelijk","web.3.d":"Goed leesbaar op elke gsm, tablet en computer.",
  "web.4.t":"Lage kosten","web.4.d":"Moderne hosting met minimale of geen maandelijkse kosten.",
  "ct.title":"Contact","ct.intro":"Hebt u een vraag over uw scheduling, een geplande migratie of een nieuwe website? Neem gerust contact op.",
- "ct.country":"België","ct.vat":"Btw-nummer","ct.map":"Toon op kaart","ct.email":"E-mail","ct.mail":"Stuur een e-mail","tabs.title":"Onze diensten","tab.1":"Workload automation","tab.2":"Migraties","tab.3":"Websites","svc.platforms":"Platformen","p.automic":"Workload-automationplatform van Broadcom (voorheen UC4) voor het automatiseren van jobs en workflows over besturingssystemen, applicaties en cloud heen.","p.autosys":"Eventgestuurde jobscheduler van Broadcom (voorheen CA). Jobs, afhankelijkheden en kalenders worden gedefinieerd in JIL.","p.uac":"Universal Automation Center (UAC): modern platform voor workload automation en orkestratie in on-premise, cloud- en hybride omgevingen.","p.eo":"Orkestratie van end-to-end bedrijfs- en IT-processen over applicaties en platformen heen.","p.tws":"IBM Workload Scheduler (voorheen Tivoli Workload Scheduler) voor z/OS-mainframe en gedistribueerde systemen.","p.ca7":"Broadcom CA 7: batchscheduler voor het z/OS-mainframe."
+ "ct.country":"België","ct.vat":"Btw-nummer","ct.map":"Toon op kaart","ct.email":"E-mail","ct.mail":"Stuur een e-mail","tabs.title":"Onze diensten","tab.1":"Workload automation","tab.2":"Migraties","tab.3":"Websites","svc.hint":"Klik op een platform voor een korte uitleg."
 },
 en:{
  "nav.services":"Services","nav.migration":"Migrations","nav.web":"Websites","nav.contact":"Contact",
@@ -364,7 +358,7 @@ en:{
  "web.3.t":"Fast and mobile-friendly","web.3.d":"Easy to read on any phone, tablet and computer.",
  "web.4.t":"Low running costs","web.4.d":"Modern hosting with minimal or no monthly fees.",
  "ct.title":"Contact","ct.intro":"Do you have a question about your scheduling, a planned migration or a new website? Feel free to get in touch.",
- "ct.country":"Belgium","ct.vat":"VAT number","ct.map":"Show on map","ct.email":"Email","ct.mail":"Send an email","tabs.title":"Our services","tab.1":"Workload automation","tab.2":"Migrations","tab.3":"Websites","svc.platforms":"Platforms","p.automic":"Broadcom's workload automation platform (formerly UC4) for automating jobs and workflows across operating systems, applications and cloud.","p.autosys":"Broadcom's event-driven job scheduler (formerly CA). Jobs, dependencies and calendars are defined in JIL.","p.uac":"Universal Automation Center (UAC): a modern platform for workload automation and orchestration across on-premises, cloud and hybrid environments.","p.eo":"Orchestration of end-to-end business and IT processes across applications and platforms.","p.tws":"IBM Workload Scheduler (formerly Tivoli Workload Scheduler) for z/OS mainframe and distributed systems.","p.ca7":"Broadcom CA 7: batch job scheduler for the z/OS mainframe."
+ "ct.country":"Belgium","ct.vat":"VAT number","ct.map":"Show on map","ct.email":"Email","ct.mail":"Send an email","tabs.title":"Our services","tab.1":"Workload automation","tab.2":"Migrations","tab.3":"Websites","svc.hint":"Click a platform for a short explanation."
 },
 fr:{
  "nav.services":"Services","nav.migration":"Migrations","nav.web":"Sites web","nav.contact":"Contact",
@@ -395,11 +389,13 @@ fr:{
  "web.3.t":"Rapide et adapté au mobile","web.3.d":"Lisible sur tout smartphone, tablette et ordinateur.",
  "web.4.t":"Coûts réduits","web.4.d":"Un hébergement moderne avec peu ou pas de frais mensuels.",
  "ct.title":"Contact","ct.intro":"Une question sur votre ordonnancement, une migration prévue ou un nouveau site web ? N'hésitez pas à nous contacter.",
- "ct.country":"Belgique","ct.vat":"Numéro de TVA","ct.map":"Voir sur la carte","ct.email":"E-mail","ct.mail":"Envoyer un e-mail","tabs.title":"Nos services","tab.1":"Workload automation","tab.2":"Migrations","tab.3":"Sites web","svc.platforms":"Plateformes","p.automic":"Plateforme d'automatisation de Broadcom (anciennement UC4) pour automatiser jobs et workflows sur systèmes d'exploitation, applications et cloud.","p.autosys":"Ordonnanceur événementiel de Broadcom (anciennement CA). Jobs, dépendances et calendriers sont définis en JIL.","p.uac":"Universal Automation Center (UAC) : plateforme moderne d'automatisation et d'orchestration pour environnements on-premise, cloud et hybrides.","p.eo":"Orchestration de processus métier et IT de bout en bout, à travers applications et plateformes.","p.tws":"IBM Workload Scheduler (anciennement Tivoli Workload Scheduler) pour mainframe z/OS et systèmes distribués.","p.ca7":"Broadcom CA 7 : ordonnanceur batch pour mainframe z/OS."
+ "ct.country":"Belgique","ct.vat":"Numéro de TVA","ct.map":"Voir sur la carte","ct.email":"E-mail","ct.mail":"Envoyer un e-mail","tabs.title":"Nos services","tab.1":"Workload automation","tab.2":"Migrations","tab.3":"Sites web","svc.hint":"Cliquez sur une plateforme pour une courte explication."
 }};
 const titles={nl:"DCITB – Workload automation consultancy | Leuven",en:"DCITB – Workload automation consultancy | Leuven",fr:"DCITB – Conseil en workload automation | Louvain"};
+function platLinks(l){document.querySelectorAll("a[data-plat]").forEach(a=>a.href="platform.html?p="+a.dataset.plat+"&lang="+l);}
 function setLang(l){
   if(!T[l]) l="nl";
+  platLinks(l);
   document.documentElement.lang=l;
   document.querySelectorAll("[data-i18n]").forEach(el=>{const v=T[l][el.dataset.i18n]; if(v) el.textContent=v;});
   document.querySelectorAll(".lang button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.lang===l));
@@ -413,6 +409,7 @@ document.querySelectorAll(".lang button").forEach(b=>b.addEventListener("click",
   if(!l){try{l=localStorage.getItem("dcitb-lang")}catch(e){}}
   if(!l){const n=(navigator.language||"nl").slice(0,2); l=T[n]?n:"nl";}
   if(l!=="nl") setLang(l); else document.querySelectorAll(".lang button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.lang==="nl"));
+  platLinks(T[l]?l:"nl");
 })();
 document.getElementById("yr").textContent=new Date().getFullYear();
 const tabs=[...document.querySelectorAll('[role="tab"]')];
