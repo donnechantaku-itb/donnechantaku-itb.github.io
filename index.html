@@ -112,13 +112,19 @@ ol.steps li::before{content:counter(s);position:absolute;left:0;top:0;width:36px
 ol.steps li:not(:last-child)::after{content:"";position:absolute;left:17px;top:40px;bottom:4px;width:2px;background:var(--line)}
 ol.steps p{margin:0;color:var(--ink-soft);font-size:.98rem}
 
-/* web */
-.web{background:var(--ink);color:#fff;border-top:0}
-.web h2{color:#fff}
-.web .intro,.web ul.plain li p{color:#C3CEDB}
-.web ul.plain li{border-color:#2D4260}
-.web .btn{border-color:#fff;color:#fff}
-.web .btn:hover{background:#fff;color:var(--ink)}
+/* service tabs */
+[id]{scroll-margin-top:84px}
+.tabs{display:flex;gap:4px;border-bottom:2px solid var(--line);margin:8px 0 40px;overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tabs [role="tab"]{flex:none;border:0;background:none;font:inherit;font-weight:600;font-size:1rem;color:var(--ink-soft);padding:12px 18px;margin-bottom:-2px;border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap;border-radius:6px 6px 0 0}
+.tabs [role="tab"]:hover{color:var(--ink);background:#e7edf0}
+.tabs [role="tab"][aria-selected="true"]{color:var(--ink);border-bottom-color:var(--ok)}
+.tabs [role="tab"]:focus-visible{outline:3px solid var(--focus);outline-offset:-3px}
+.panel{animation:fadein .25s ease both}
+.panel:focus-visible{outline:3px solid var(--focus);outline-offset:6px;border-radius:6px}
+.panel h3.ptitle{font-size:clamp(1.4rem,2.6vw,1.9rem);line-height:1.15;font-weight:800;margin:0 0 12px;font-variation-settings:"wdth" 106}
+@media (prefers-reduced-motion:reduce){.panel{animation:none}}
+@media (max-width:600px){.tabs [role="tab"]{padding:10px 12px;font-size:.92rem}}
 
 /* contact */
 .contact-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:28px}
@@ -160,7 +166,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
       <p class="lead" data-i18n="hero.lead">DCITB is een consultancy uit Leuven voor workload automation. We ontwerpen, beheren, auditen en migreren jobscheduling op Automic, AutoSys, Stonebranch, Enterprise Orchestrator, TWS en CA 7.</p>
       <div class="btns">
         <a class="btn primary" href="#contact" data-i18n="hero.cta">Neem contact op</a>
-        <a class="btn ghost" href="#diensten" data-i18n="hero.cta2">Bekijk onze diensten</a>
+        <a class="btn ghost" href="#services" data-i18n="hero.cta2">Bekijk onze diensten</a>
       </div>
 
       <figure class="run" aria-labelledby="run-cap">
@@ -187,69 +193,74 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
     </div>
   </section>
 
-  <section class="block" id="diensten">
+  <section class="block" id="services">
     <div class="wrap">
-      <h2 data-i18n="svc.title">Workload automation consultancy</h2>
-      <p class="intro" data-i18n="svc.intro">Van één kritieke batchketen tot een volledig schedulingplatform: we helpen bij ontwerp, beheer en verbetering, met oog voor stabiliteit en controleerbaarheid.</p>
-      <div class="two">
-        <ul class="plain">
-          <li><h3 data-i18n="svc.1.t">Ontwerp en implementatie</h3><p data-i18n="svc.1.d">Jobdefinities, afhankelijkheden, kalenders en agents opgezet volgens de beste praktijken van het platform.</p></li>
-          <li><h3 data-i18n="svc.2.t">Audit en review</h3><p data-i18n="svc.2.d">Grondige controle van bestaande jobdefinities en kalenderlogica, met concrete verbeterpunten.</p></li>
-          <li><h3 data-i18n="svc.3.t">Change management</h3><p data-i18n="svc.3.d">Voorbereiding en controle van wijzigingen voor het CAB, zodat releases voorspelbaar verlopen.</p></li>
-          <li><h3 data-i18n="svc.4.t">Beheer en troubleshooting</h3><p data-i18n="svc.4.d">Analyse van vastgelopen of trage batchketens en ondersteuning van uw operationele teams.</p></li>
-        </ul>
-        <div>
-          <div class="products" aria-label="Platformen">
-            <span>Automic</span><span>AutoSys</span><span>Stonebranch</span><span>Enterprise Orchestrator</span><span>TWS</span><span>CA 7</span>
+      <h2 data-i18n="tabs.title">Onze diensten</h2>
+      <div class="tabs" role="tablist" aria-label="Diensten">
+        <button type="button" role="tab" id="tab-diensten" aria-controls="diensten" aria-selected="true" data-i18n="tab.1">Workload automation</button>
+        <button type="button" role="tab" id="tab-migratie" aria-controls="migratie" aria-selected="false" tabindex="-1" data-i18n="tab.2">Migraties</button>
+        <button type="button" role="tab" id="tab-websites" aria-controls="websites" aria-selected="false" tabindex="-1" data-i18n="tab.3">Websites</button>
+      </div>
+
+      <div class="panel" role="tabpanel" id="diensten" aria-labelledby="tab-diensten" tabindex="0">
+        <h3 class="ptitle" data-i18n="svc.title">Workload automation consultancy</h3>
+        <p class="intro" data-i18n="svc.intro">Van één kritieke batchketen tot een volledig schedulingplatform: we helpen bij ontwerp, beheer en verbetering, met oog voor stabiliteit en controleerbaarheid.</p>
+        <div class="two">
+          <ul class="plain">
+            <li><h3 data-i18n="svc.1.t">Ontwerp en implementatie</h3><p data-i18n="svc.1.d">Jobdefinities, afhankelijkheden, kalenders en agents opgezet volgens de beste praktijken van het platform.</p></li>
+            <li><h3 data-i18n="svc.2.t">Audit en review</h3><p data-i18n="svc.2.d">Grondige controle van bestaande jobdefinities en kalenderlogica, met concrete verbeterpunten.</p></li>
+            <li><h3 data-i18n="svc.3.t">Change management</h3><p data-i18n="svc.3.d">Voorbereiding en controle van wijzigingen voor het CAB, zodat releases voorspelbaar verlopen.</p></li>
+            <li><h3 data-i18n="svc.4.t">Beheer en troubleshooting</h3><p data-i18n="svc.4.d">Analyse van vastgelopen of trage batchketens en ondersteuning van uw operationele teams.</p></li>
+          </ul>
+          <div>
+            <div class="products" aria-label="Platformen">
+              <span>Automic</span><span>AutoSys</span><span>Stonebranch</span><span>Enterprise Orchestrator</span><span>TWS</span><span>CA 7</span>
+            </div>
+            <p class="products-note" data-i18n="svc.note">Platformen waarop we werken. TWS staat voor IBM (Tivoli) Workload Scheduler, Stonebranch voor Universal Automation Center (UAC).</p>
           </div>
-          <p class="products-note" data-i18n="svc.note">Platformen waarop we werken. TWS staat voor IBM (Tivoli) Workload Scheduler, Stonebranch voor Universal Automation Center (UAC).</p>
         </div>
       </div>
-    </div>
-  </section>
 
-  <section class="block" id="migratie">
-    <div class="wrap">
-      <h2 data-i18n="mig.title">Migraties tussen schedulingplatformen</h2>
-      <p class="intro" data-i18n="mig.intro">Overstappen naar een ander platform raakt elke batchketen in uw organisatie. We begeleiden migraties van en naar elk van deze producten, zodat de overstap zonder verrassingen verloopt.</p>
-      <div class="two">
-        <ol class="steps">
-          <li><h3 data-i18n="mig.1.t">Inventaris en analyse</h3><p data-i18n="mig.1.d">Alle jobs, afhankelijkheden, kalenders en uitzonderingen in kaart gebracht.</p></li>
-          <li><h3 data-i18n="mig.2.t">Conversie en mapping</h3><p data-i18n="mig.2.d">Definities omgezet naar het nieuwe platform, met een duidelijke mapping van elk concept.</p></li>
-          <li><h3 data-i18n="mig.3.t">Test en parallelle run</h3><p data-i18n="mig.3.d">Oud en nieuw naast elkaar vergeleken tot de resultaten overeenkomen.</p></li>
-          <li><h3 data-i18n="mig.4.t">Overschakeling en nazorg</h3><p data-i18n="mig.4.d">Gecontroleerde cutover en opvolging tot alles stabiel draait.</p></li>
-        </ol>
-        <div style="overflow-x:auto">
-          <table class="matrix">
-            <caption data-i18n="mig.caption">Elke combinatie van bron (rij) en doel (kolom) wordt ondersteund.</caption>
-            <thead><tr><th class="corner"></th><th scope="col">Automic</th><th scope="col">AutoSys</th><th scope="col">Stonebranch</th><th scope="col">Ent. Orchestrator</th><th scope="col">TWS</th><th scope="col">CA 7</th></tr></thead>
-            <tbody>
-              <tr><th scope="row">Automic</th><td class="self"></td><td></td><td></td><td></td><td></td><td></td></tr>
-              <tr><th scope="row">AutoSys</th><td></td><td class="self"></td><td></td><td></td><td></td><td></td></tr>
-              <tr><th scope="row">Stonebranch</th><td></td><td></td><td class="self"></td><td></td><td></td><td></td></tr>
-              <tr><th scope="row">Ent. Orchestrator</th><td></td><td></td><td></td><td class="self"></td><td></td><td></td></tr>
-              <tr><th scope="row">TWS</th><td></td><td></td><td></td><td></td><td class="self"></td><td></td></tr>
-              <tr><th scope="row">CA 7</th><td></td><td></td><td></td><td></td><td></td><td class="self"></td></tr>
-            </tbody>
-          </table>
+      <div class="panel" role="tabpanel" id="migratie" aria-labelledby="tab-migratie" tabindex="0" hidden>
+        <h3 class="ptitle" data-i18n="mig.title">Migraties tussen schedulingplatformen</h3>
+        <p class="intro" data-i18n="mig.intro">Overstappen naar een ander platform raakt elke batchketen in uw organisatie. We begeleiden migraties van en naar elk van deze producten, zodat de overstap zonder verrassingen verloopt.</p>
+        <div class="two">
+          <ol class="steps">
+            <li><h3 data-i18n="mig.1.t">Inventaris en analyse</h3><p data-i18n="mig.1.d">Alle jobs, afhankelijkheden, kalenders en uitzonderingen in kaart gebracht.</p></li>
+            <li><h3 data-i18n="mig.2.t">Conversie en mapping</h3><p data-i18n="mig.2.d">Definities omgezet naar het nieuwe platform, met een duidelijke mapping van elk concept.</p></li>
+            <li><h3 data-i18n="mig.3.t">Test en parallelle run</h3><p data-i18n="mig.3.d">Oud en nieuw naast elkaar vergeleken tot de resultaten overeenkomen.</p></li>
+            <li><h3 data-i18n="mig.4.t">Overschakeling en nazorg</h3><p data-i18n="mig.4.d">Gecontroleerde cutover en opvolging tot alles stabiel draait.</p></li>
+          </ol>
+          <div style="overflow-x:auto">
+            <table class="matrix">
+              <caption data-i18n="mig.caption">Elke combinatie van bron (rij) en doel (kolom) wordt ondersteund.</caption>
+              <thead><tr><th class="corner"></th><th scope="col">Automic</th><th scope="col">AutoSys</th><th scope="col">Stonebranch</th><th scope="col">Ent. Orchestrator</th><th scope="col">TWS</th><th scope="col">CA 7</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Automic</th><td class="self"></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><th scope="row">AutoSys</th><td></td><td class="self"></td><td></td><td></td><td></td><td></td></tr>
+                <tr><th scope="row">Stonebranch</th><td></td><td></td><td class="self"></td><td></td><td></td><td></td></tr>
+                <tr><th scope="row">Ent. Orchestrator</th><td></td><td></td><td></td><td class="self"></td><td></td><td></td></tr>
+                <tr><th scope="row">TWS</th><td></td><td></td><td></td><td></td><td class="self"></td><td></td></tr>
+                <tr><th scope="row">CA 7</th><td></td><td></td><td></td><td></td><td></td><td class="self"></td></tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
 
-  <section class="block web" id="websites">
-    <div class="wrap two">
-      <div>
-        <h2 data-i18n="web.title">Websites voor kleine ondernemingen</h2>
+      <div class="panel" role="tabpanel" id="websites" aria-labelledby="tab-websites" tabindex="0" hidden>
+        <h3 class="ptitle" data-i18n="web.title">Websites voor kleine ondernemingen</h3>
         <p class="intro" data-i18n="web.intro">Een verzorgde, snelle website zonder gedoe. We bouwen en onderhouden websites voor zelfstandigen en kleine bedrijven, in één of meerdere talen, zoals deze site.</p>
-        <a class="btn" href="#contact" data-i18n="web.cta">Vraag een voorstel aan</a>
+        <div class="two">
+          <ul class="plain">
+            <li><h3 data-i18n="web.1.t">Ontwerp op maat</h3><p data-i18n="web.1.d">Geen standaardsjabloon, maar een site die bij uw zaak past.</p></li>
+            <li><h3 data-i18n="web.2.t">Meertalig</h3><p data-i18n="web.2.d">Nederlands, Frans en Engels op één site.</p></li>
+            <li><h3 data-i18n="web.3.t">Snel en mobielvriendelijk</h3><p data-i18n="web.3.d">Goed leesbaar op elke gsm, tablet en computer.</p></li>
+            <li><h3 data-i18n="web.4.t">Lage kosten</h3><p data-i18n="web.4.d">Moderne hosting met minimale of geen maandelijkse kosten.</p></li>
+          </ul>
+          <div><a class="btn primary" href="#contact" data-i18n="web.cta">Vraag een voorstel aan</a></div>
+        </div>
       </div>
-      <ul class="plain">
-        <li><h3 data-i18n="web.1.t">Ontwerp op maat</h3><p data-i18n="web.1.d">Geen standaardsjabloon, maar een site die bij uw zaak past.</p></li>
-        <li><h3 data-i18n="web.2.t">Meertalig</h3><p data-i18n="web.2.d">Nederlands, Frans en Engels op één site.</p></li>
-        <li><h3 data-i18n="web.3.t">Snel en mobielvriendelijk</h3><p data-i18n="web.3.d">Goed leesbaar op elke gsm, tablet en computer.</p></li>
-        <li><h3 data-i18n="web.4.t">Lage kosten</h3><p data-i18n="web.4.d">Moderne hosting met minimale of geen maandelijkse kosten.</p></li>
-      </ul>
     </div>
   </section>
 
@@ -315,7 +326,7 @@ nl:{
  "web.3.t":"Snel en mobielvriendelijk","web.3.d":"Goed leesbaar op elke gsm, tablet en computer.",
  "web.4.t":"Lage kosten","web.4.d":"Moderne hosting met minimale of geen maandelijkse kosten.",
  "ct.title":"Contact","ct.intro":"Hebt u een vraag over uw scheduling, een geplande migratie of een nieuwe website? Neem gerust contact op.",
- "ct.country":"België","ct.vat":"Btw-nummer","ct.map":"Toon op kaart","ct.email":"E-mail","ct.mail":"Stuur een e-mail"
+ "ct.country":"België","ct.vat":"Btw-nummer","ct.map":"Toon op kaart","ct.email":"E-mail","ct.mail":"Stuur een e-mail","tabs.title":"Onze diensten","tab.1":"Workload automation","tab.2":"Migraties","tab.3":"Websites"
 },
 en:{
  "nav.services":"Services","nav.migration":"Migrations","nav.web":"Websites","nav.contact":"Contact",
@@ -346,7 +357,7 @@ en:{
  "web.3.t":"Fast and mobile-friendly","web.3.d":"Easy to read on any phone, tablet and computer.",
  "web.4.t":"Low running costs","web.4.d":"Modern hosting with minimal or no monthly fees.",
  "ct.title":"Contact","ct.intro":"Do you have a question about your scheduling, a planned migration or a new website? Feel free to get in touch.",
- "ct.country":"Belgium","ct.vat":"VAT number","ct.map":"Show on map","ct.email":"Email","ct.mail":"Send an email"
+ "ct.country":"Belgium","ct.vat":"VAT number","ct.map":"Show on map","ct.email":"Email","ct.mail":"Send an email","tabs.title":"Our services","tab.1":"Workload automation","tab.2":"Migrations","tab.3":"Websites"
 },
 fr:{
  "nav.services":"Services","nav.migration":"Migrations","nav.web":"Sites web","nav.contact":"Contact",
@@ -377,7 +388,7 @@ fr:{
  "web.3.t":"Rapide et adapté au mobile","web.3.d":"Lisible sur tout smartphone, tablette et ordinateur.",
  "web.4.t":"Coûts réduits","web.4.d":"Un hébergement moderne avec peu ou pas de frais mensuels.",
  "ct.title":"Contact","ct.intro":"Une question sur votre ordonnancement, une migration prévue ou un nouveau site web ? N'hésitez pas à nous contacter.",
- "ct.country":"Belgique","ct.vat":"Numéro de TVA","ct.map":"Voir sur la carte","ct.email":"E-mail","ct.mail":"Envoyer un e-mail"
+ "ct.country":"Belgique","ct.vat":"Numéro de TVA","ct.map":"Voir sur la carte","ct.email":"E-mail","ct.mail":"Envoyer un e-mail","tabs.title":"Nos services","tab.1":"Workload automation","tab.2":"Migrations","tab.3":"Sites web"
 }};
 const titles={nl:"DCITB – Workload automation consultancy | Leuven",en:"DCITB – Workload automation consultancy | Leuven",fr:"DCITB – Conseil en workload automation | Louvain"};
 function setLang(l){
@@ -397,6 +408,28 @@ document.querySelectorAll(".lang button").forEach(b=>b.addEventListener("click",
   if(l!=="nl") setLang(l); else document.querySelectorAll(".lang button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.lang==="nl"));
 })();
 document.getElementById("yr").textContent=new Date().getFullYear();
+const tabs=[...document.querySelectorAll('[role="tab"]')];
+function selectTab(id,focus){
+  tabs.forEach(t=>{const on=t.getAttribute("aria-controls")===id;t.setAttribute("aria-selected",on);t.tabIndex=on?0:-1;document.getElementById(t.getAttribute("aria-controls")).hidden=!on;if(on&&focus)t.focus();});
+}
+function isPanel(id){const el=id&&document.getElementById(id);return !!el&&el.getAttribute("role")==="tabpanel";}
+function setHash(id){const u=new URL(location);u.hash=id;history.replaceState(null,"",u);}
+tabs.forEach((t,i)=>{
+  t.addEventListener("click",()=>{const id=t.getAttribute("aria-controls");selectTab(id);setHash(id);});
+  t.addEventListener("keydown",e=>{
+    let n=null;
+    if(e.key==="ArrowRight")n=(i+1)%tabs.length;else if(e.key==="ArrowLeft")n=(i-1+tabs.length)%tabs.length;else if(e.key==="Home")n=0;else if(e.key==="End")n=tabs.length-1;
+    if(n===null)return;e.preventDefault();const id=tabs[n].getAttribute("aria-controls");selectTab(id,true);setHash(id);
+  });
+});
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener("click",e=>{
+  const id=a.getAttribute("href").slice(1);
+  if(!isPanel(id))return;
+  e.preventDefault();selectTab(id);setHash(id);document.getElementById("services").scrollIntoView();
+}));
+function fromHash(){const id=location.hash.slice(1);if(isPanel(id)){selectTab(id);document.getElementById("services").scrollIntoView();}}
+window.addEventListener("hashchange",fromHash);
+fromHash();
 </script>
 </body>
 </html>
