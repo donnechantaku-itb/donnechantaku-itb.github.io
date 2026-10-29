@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DCITB – Platformen</title>
+<meta name="description" content="Uitleg over de workload automation-platformen waarmee DCITB werkt: Automic, AutoSys, Stonebranch, Enterprise Orchestrator, TWS en CA 7.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2314263F'/%3E%3Crect x='10' y='18' width='22' height='8' rx='2' fill='%2337A08E'/%3E%3Crect x='24' y='30' width='26' height='8' rx='2' fill='%2337A08E'/%3E%3Crect x='38' y='42' width='16' height='8' rx='2' fill='%23E8B33A'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#14263F;--ink-soft:#4A5A70;--paper:#F3F6F7;--panel:#FFFFFF;--line:#D3DCE2;--ok:#2E8C7C;--focus:#2563EB;--maxw:880px}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"Archivo",system-ui,sans-serif;font-size:1.0625rem;line-height:1.6}
+a{color:inherit}
+a:focus-visible,button:focus-visible{outline:3px solid var(--focus);outline-offset:3px;border-radius:4px}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+@media (max-width:600px){.wrap{padding:0 16px}}
+header.top{position:sticky;top:0;z-index:10;background:rgba(243,246,247,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:24px;height:68px;max-width:1120px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand svg{flex:none}
+.brand b{font-weight:800;font-size:1.25rem;letter-spacing:.02em;font-variation-settings:"wdth" 118}
+.brand span{display:block;font-size:.75rem;color:var(--ink-soft);line-height:1.2}
+.lang{margin-left:auto;display:flex;border:1px solid var(--line);border-radius:999px;padding:3px;background:var(--panel)}
+.lang button{border:0;background:none;font:inherit;font-size:.82rem;font-weight:600;color:var(--ink-soft);padding:4px 10px;border-radius:999px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--ink);color:#fff}
+@media (max-width:600px){.brand span{display:none}}
+
+main{padding:40px 0 72px}
+.back{display:inline-block;font-weight:600;color:var(--ink-soft);text-decoration:none;margin-bottom:28px}
+.back:hover{color:var(--ink);text-decoration:underline}
+.badge{display:inline-block;font-weight:700;font-size:1.05rem;padding:8px 16px;border:2px solid var(--ink);border-radius:8px;background:var(--panel);font-variation-settings:"wdth" 110;margin-bottom:18px}
+h1{font-size:clamp(1.9rem,6vw,3.2rem);line-height:1.08;font-weight:800;margin:0 0 8px;font-variation-settings:"wdth" 110}
+.vendor{color:var(--ink-soft);font-weight:500;margin:0 0 28px}
+.body p{max-width:64ch;margin:0 0 16px}
+.do{margin-top:36px;background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--ok);border-radius:12px;padding:22px 24px}
+.do h2{font-size:1.2rem;margin:0 0 10px}
+.do ul{margin:0;padding-left:20px}
+.do li{margin:4px 0}
+.cta{margin-top:28px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.btn{display:inline-block;padding:13px 22px;border-radius:8px;font-weight:600;text-decoration:none;border:2px solid var(--ink)}
+.btn.primary{background:var(--ink);color:#fff}
+.btn.primary:hover{background:#0c1a2d}
+.btn.ghost:hover{background:#fff}
+.others{margin-top:56px;padding-top:28px;border-top:1px solid var(--line)}
+.others h2{font-size:1rem;color:var(--ink-soft);font-weight:600;margin:0 0 12px}
+.products{display:flex;flex-wrap:wrap;gap:10px}
+.products a{font-weight:700;font-size:1.05rem;padding:8px 16px;border:2px solid var(--ink);border-radius:8px;background:var(--panel);text-decoration:none;font-variation-settings:"wdth" 110}
+.products a:hover{background:var(--ink);color:#fff}
+footer{padding:28px 0 40px;border-top:1px solid var(--line);font-size:.85rem;color:var(--ink-soft)}
+footer .wrap{max-width:1120px}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="index.html" id="home" aria-label="DCITB">
+      <svg width="34" height="34" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="12" fill="#14263F"/><rect x="10" y="18" width="22" height="8" rx="2" fill="#37A08E"/><rect x="24" y="30" width="26" height="8" rx="2" fill="#37A08E"/><rect x="38" y="42" width="16" height="8" rx="2" fill="#E8B33A"/></svg>
+      <div><b>DCITB</b><span>Donné-Chantaku ITB</span></div>
+    </a>
+    <div class="lang" role="group" aria-label="Taal / Language / Langue">
+      <button type="button" data-lang="nl" aria-pressed="true">NL</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      <button type="button" data-lang="fr" aria-pressed="false">FR</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <a class="back" id="back" href="index.html#diensten"></a>
+    <article id="content"></article>
+    <section class="others">
+      <h2 id="others-title"></h2>
+      <nav class="products" id="others" aria-labelledby="others-title"></nav>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">© <span id="yr">2026</span> Donné-Chantaku ITB (DCITB) – Martelarenplein 20E, 3000 Leuven – BE 0895.860.920 – RPR Leuven – <a href="mailto:donne.chantaku.itb@gmail.com">donne.chantaku.itb@gmail.com</a></div>
+</footer>
+
+<script>
+const ORDER = ["automic","autosys","stonebranch","eo","tws","ca7"];
+const SHORT = {automic:"Automic",autosys:"AutoSys",stonebranch:"Stonebranch",eo:"Enterprise Orchestrator",tws:"TWS",ca7:"CA 7"};
+const UI = {
+ nl:{back:"Terug naar diensten",others:"Andere platformen",do:"Wat DCITB voor u doet",contact:"Neem contact op",
+     items:p=>["Ontwerp en implementatie van jobs, workflows en kalenders in "+p,"Audit en review van bestaande definities","Migratie van of naar "+p,"Troubleshooting en ondersteuning van uw operationele teams"],
+     q:p=>"Vragen over "+p+"?",notfound:"Kies een platform hieronder.",title:"Platformen"},
+ en:{back:"Back to services",others:"Other platforms",do:"What DCITB does for you",contact:"Get in touch",
+     items:p=>["Design and implementation of jobs, workflows and calendars in "+p,"Audit and review of existing definitions","Migration from or to "+p,"Troubleshooting and support for your operations teams"],
+     q:p=>"Questions about "+p+"?",notfound:"Choose a platform below.",title:"Platforms"},
+ fr:{back:"Retour aux services",others:"Autres plateformes",do:"Ce que DCITB fait pour vous",contact:"Contactez-nous",
+     items:p=>["Conception et mise en œuvre de jobs, workflows et calendriers dans "+p,"Audit et revue des définitions existantes","Migration depuis ou vers "+p,"Dépannage et soutien à vos équipes d'exploitation"],
+     q:p=>"Des questions sur "+p+" ?",notfound:"Choisissez une plateforme ci-dessous.",title:"Plateformes"}
+};
+const P = {
+ automic:{
+  nl:{name:"Automic Automation",vendor:"Broadcom (voorheen UC4)",body:[
+   "Automic Automation is het workload-automationplatform van Broadcom. Het plant en voert jobs en workflows uit op Windows, Linux/Unix, mainframe, bedrijfsapplicaties zoals SAP en clouddiensten, allemaal vanuit één centraal systeem.",
+   "Alles wordt gemodelleerd als objecten: jobs, workflows, kalenders en variabelen. Dat maakt het geschikt voor grote, complexe omgevingen met veel onderlinge afhankelijkheden."]},
+  en:{name:"Automic Automation",vendor:"Broadcom (formerly UC4)",body:[
+   "Automic Automation is Broadcom's workload automation platform. It schedules and runs jobs and workflows on Windows, Linux/Unix, mainframe, business applications such as SAP and cloud services, all from one central system.",
+   "Everything is modelled as objects: jobs, workflows, calendars and variables. That makes it well suited to large, complex environments with many dependencies."]},
+  fr:{name:"Automic Automation",vendor:"Broadcom (anciennement UC4)",body:[
+   "Automic Automation est la plateforme d'automatisation de Broadcom. Elle planifie et exécute jobs et workflows sur Windows, Linux/Unix, mainframe, applications métier comme SAP et services cloud, depuis un seul système central.",
+   "Tout est modélisé sous forme d'objets : jobs, workflows, calendriers et variables. Elle convient donc aux environnements vastes et complexes, avec de nombreuses dépendances."]}},
+ autosys:{
+  nl:{name:"AutoSys Workload Automation",vendor:"Broadcom (voorheen CA Technologies)",body:[
+   "AutoSys is een eventgestuurde jobscheduler die in veel grote organisaties draait. Jobs starten op basis van tijd, de status van andere jobs of externe gebeurtenissen, zoals een bestand dat binnenkomt.",
+   "Jobdefinities, afhankelijkheden en kalenders worden geschreven in JIL (Job Information Language). Daardoor zijn ze eenvoudig te versioneren, te reviewen en te auditen."]},
+  en:{name:"AutoSys Workload Automation",vendor:"Broadcom (formerly CA Technologies)",body:[
+   "AutoSys is an event-driven job scheduler used in many large organisations. Jobs start based on time, on the status of other jobs or on external events, such as a file arriving.",
+   "Job definitions, dependencies and calendars are written in JIL (Job Information Language), which makes them easy to version, review and audit."]},
+  fr:{name:"AutoSys Workload Automation",vendor:"Broadcom (anciennement CA Technologies)",body:[
+   "AutoSys est un ordonnanceur événementiel utilisé dans de nombreuses grandes organisations. Les jobs démarrent selon l'heure, le statut d'autres jobs ou des événements externes, comme l'arrivée d'un fichier.",
+   "Les définitions de jobs, dépendances et calendriers sont écrites en JIL (Job Information Language), ce qui les rend faciles à versionner, relire et auditer."]}},
+ stonebranch:{
+  nl:{name:"Stonebranch Universal Automation Center",vendor:"Stonebranch (UAC)",body:[
+   "UAC is een modern platform voor workload automation en orkestratie. De Universal Controller beheert taken, workflows en triggers centraal, terwijl lichte agents het werk uitvoeren op servers, mainframes en in de cloud.",
+   "De webinterface, de REST API en de ondersteuning voor hybride en cloudomgevingen maken UAC een veelgekozen doelplatform wanneer organisaties hun scheduling moderniseren."]},
+  en:{name:"Stonebranch Universal Automation Center",vendor:"Stonebranch (UAC)",body:[
+   "UAC is a modern platform for workload automation and orchestration. The Universal Controller manages tasks, workflows and triggers centrally, while lightweight agents run the work on servers, mainframes and in the cloud.",
+   "Its web interface, REST API and support for hybrid and cloud environments make UAC a common target platform when organisations modernise their scheduling."]},
+  fr:{name:"Stonebranch Universal Automation Center",vendor:"Stonebranch (UAC)",body:[
+   "UAC est une plateforme moderne d'automatisation et d'orchestration. Le Universal Controller gère tâches, workflows et déclencheurs de façon centrale, tandis que des agents légers exécutent le travail sur serveurs, mainframes et dans le cloud.",
+   "Son interface web, son API REST et sa prise en charge des environnements hybrides et cloud en font une cible fréquente lorsque les organisations modernisent leur ordonnancement."]}},
+ eo:{
+  nl:{name:"Enterprise Orchestrator",vendor:"",body:[
+   "Enterprise orchestration koppelt afzonderlijke jobs aan elkaar tot end-to-end processen die over applicaties, systemen en teams heen lopen.",
+   "In plaats van naar losse batchjobs te kijken, staat het volledige bedrijfsproces centraal: wat moet er draaien, in welke volgorde, en wat gebeurt er als iets misloopt."]},
+  en:{name:"Enterprise Orchestrator",vendor:"",body:[
+   "Enterprise orchestration links individual jobs into end-to-end processes that span applications, systems and teams.",
+   "Instead of looking at single batch jobs, the focus is on the full business process: what has to run, in which order, and what happens when something fails."]},
+  fr:{name:"Enterprise Orchestrator",vendor:"",body:[
+   "L'orchestration d'entreprise relie des jobs individuels en processus de bout en bout, à travers applications, systèmes et équipes.",
+   "Plutôt que de considérer des jobs batch isolés, on se concentre sur le processus métier complet : ce qui doit tourner, dans quel ordre, et ce qui se passe en cas d'échec."]}},
+ tws:{
+  nl:{name:"IBM Workload Scheduler (TWS)",vendor:"IBM (voorheen Tivoli Workload Scheduler)",body:[
+   "IBM Workload Scheduler, nog steeds vaak TWS genoemd, plant en voert batchwerk uit op zowel het z/OS-mainframe als gedistribueerde systemen.",
+   "Het werkt met een dagelijks productieplan dat wordt opgebouwd uit job streams, afhankelijkheden en run cycles. Zo heeft operations een duidelijk zicht op wat wanneer draait."]},
+  en:{name:"IBM Workload Scheduler (TWS)",vendor:"IBM (formerly Tivoli Workload Scheduler)",body:[
+   "IBM Workload Scheduler, still widely known as TWS, plans and runs batch workloads on both the z/OS mainframe and distributed systems.",
+   "It works with a daily production plan built from job streams, dependencies and run cycles, giving operations a clear view of what runs when."]},
+  fr:{name:"IBM Workload Scheduler (TWS)",vendor:"IBM (anciennement Tivoli Workload Scheduler)",body:[
+   "IBM Workload Scheduler, encore souvent appelé TWS, planifie et exécute les traitements batch sur le mainframe z/OS comme sur les systèmes distribués.",
+   "Il s'appuie sur un plan de production quotidien construit à partir de job streams, de dépendances et de run cycles, ce qui donne à l'exploitation une vue claire de ce qui tourne et quand."]}},
+ ca7:{
+  nl:{name:"CA 7 Workload Automation",vendor:"Broadcom (voorheen CA Technologies)",body:[
+   "CA 7 is een batchscheduler voor het IBM z/OS-mainframe. Het bepaalt wanneer en in welke volgorde mainframejobs draaien, op basis van planningen, afhankelijkheden en het afronden van andere jobs.",
+   "Het wordt ingezet waar kritieke mainframe-batchverwerking elke nacht betrouwbaar moet draaien."]},
+  en:{name:"CA 7 Workload Automation",vendor:"Broadcom (formerly CA Technologies)",body:[
+   "CA 7 is a batch scheduler for the IBM z/OS mainframe. It controls when and in which order mainframe jobs run, based on schedules, dependencies and the completion of other jobs.",
+   "It is used where critical mainframe batch processing has to run reliably every night."]},
+  fr:{name:"CA 7 Workload Automation",vendor:"Broadcom (anciennement CA Technologies)",body:[
+   "CA 7 est un ordonnanceur batch pour le mainframe IBM z/OS. Il détermine quand et dans quel ordre les jobs mainframe s'exécutent, selon les planifications, les dépendances et la fin d'autres jobs.",
+   "Il est utilisé là où des traitements batch mainframe critiques doivent tourner de façon fiable chaque nuit."]}}
+};
+
+const params = new URLSearchParams(location.search);
+const plat = P[params.get("p")] ? params.get("p") : null;
+
+function el(tag, attrs, text){const e=document.createElement(tag);if(attrs)for(const k in attrs)e.setAttribute(k,attrs[k]);if(text!=null)e.textContent=text;return e;}
+
+function render(l){
+  if(!UI[l]) l="nl";
+  const ui=UI[l];
+  document.documentElement.lang=l;
+  document.querySelectorAll(".lang button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.lang===l));
+  document.getElementById("home").href="index.html?lang="+l;
+  const back=document.getElementById("back");back.href="index.html?lang="+l+"#diensten";back.textContent="← "+ui.back;
+  const c=document.getElementById("content");c.replaceChildren();
+  if(plat){
+    const d=P[plat][l];
+    c.append(el("span",{class:"badge"},SHORT[plat]),el("h1",null,d.name));
+    if(d.vendor)c.append(el("p",{class:"vendor"},d.vendor));
+    const body=el("div",{class:"body"});d.body.forEach(t=>body.append(el("p",null,t)));c.append(body);
+    const box=el("section",{class:"do"});box.append(el("h2",null,ui.do));const ul=el("ul");ui.items(SHORT[plat]).forEach(t=>ul.append(el("li",null,t)));box.append(ul);c.append(box);
+    const cta=el("div",{class:"cta"});cta.append(el("span",null,ui.q(SHORT[plat])));const a=el("a",{class:"btn primary",href:"index.html?lang="+l+"#contact"},ui.contact);cta.append(a);c.append(cta);
+    document.title=SHORT[plat]+" – DCITB";
+  } else {
+    c.append(el("h1",null,ui.title),el("p",{class:"vendor"},ui.notfound));
+    document.title=ui.title+" – DCITB";
+  }
+  document.getElementById("others-title").textContent=plat?ui.others:ui.title;
+  const o=document.getElementById("others");o.replaceChildren();
+  ORDER.filter(k=>k!==plat).forEach(k=>o.append(el("a",{href:"platform.html?p="+k+"&lang="+l},SHORT[k])));
+  try{localStorage.setItem("dcitb-lang",l)}catch(e){}
+  const u=new URL(location);u.searchParams.set("lang",l);history.replaceState(null,"",u);
+}
+document.querySelectorAll(".lang button").forEach(b=>b.addEventListener("click",()=>render(b.dataset.lang)));
+(function(){
+  let l=params.get("lang");
+  if(!l){try{l=localStorage.getItem("dcitb-lang")}catch(e){}}
+  if(!l){const n=(navigator.language||"nl").slice(0,2);l=UI[n]?n:"nl";}
+  render(l);
+})();
+document.getElementById("yr").textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
