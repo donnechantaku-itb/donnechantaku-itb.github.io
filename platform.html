@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>DCITB – Platformen</title>
 <meta name="description" content="Uitleg over de workload automation-platformen waarmee DCITB werkt: Automic, AutoSys, Stonebranch, Enterprise Orchestrator, TWS en CA 7.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2314263F'/%3E%3Crect x='10' y='18' width='22' height='8' rx='2' fill='%2337A08E'/%3E%3Crect x='24' y='30' width='26' height='8' rx='2' fill='%2337A08E'/%3E%3Crect x='38' y='42' width='16' height='8' rx='2' fill='%23E8B33A'/%3E%3C/svg%3E">
+<link rel="icon" type="image/svg+xml" href="logo/dcitb-icon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap" rel="stylesheet">
@@ -20,9 +20,9 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--focus);outline-offs
 header.top{position:sticky;top:0;z-index:10;background:rgba(243,246,247,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 .top .wrap{display:flex;align-items:center;gap:24px;height:68px;max-width:1120px}
 .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
-.brand svg{flex:none}
+.brand img{display:block;height:25px;width:auto;flex:none}
 .brand b{font-weight:800;font-size:1.25rem;letter-spacing:.02em;font-variation-settings:"wdth" 118}
-.brand span{display:block;font-size:.75rem;color:var(--ink-soft);line-height:1.2}
+.brand span{display:block;font-size:.75rem;color:var(--ink-soft);line-height:1.2;border-left:1px solid var(--line);padding-left:12px}
 .lang{margin-left:auto;display:flex;border:1px solid var(--line);border-radius:999px;padding:3px;background:var(--panel)}
 .lang button{border:0;background:none;font:inherit;font-size:.82rem;font-weight:600;color:var(--ink-soft);padding:4px 10px;border-radius:999px;cursor:pointer}
 .lang button[aria-pressed="true"]{background:var(--ink);color:#fff}
@@ -57,8 +57,8 @@ footer .wrap{max-width:1120px}
 <header class="top">
   <div class="wrap">
     <a class="brand" href="index.html" id="home" aria-label="DCITB">
-      <svg width="34" height="34" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="12" fill="#14263F"/><rect x="10" y="18" width="22" height="8" rx="2" fill="#37A08E"/><rect x="24" y="30" width="26" height="8" rx="2" fill="#37A08E"/><rect x="38" y="42" width="16" height="8" rx="2" fill="#E8B33A"/></svg>
-      <div><b>DCITB</b><span>Donné-Chantaku ITB</span></div>
+      <img src="logo/dcitb-wordmark.svg" alt="" width="94" height="25">
+      <span>Donné-Chantaku ITB</span>
     </a>
     <div class="lang" role="group" aria-label="Taal / Language / Langue">
       <button type="button" data-lang="nl" aria-pressed="true">NL</button>
