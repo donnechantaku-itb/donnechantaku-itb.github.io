@@ -125,7 +125,7 @@ ol.steps p{margin:0;color:var(--ink-soft);font-size:.98rem}
 .contact-card address{font-style:normal;font-size:1.15rem;line-height:1.7}
 .contact-card dl{display:grid;grid-template-columns:auto 1fr;gap:6px 18px;margin:20px 0 0;font-size:.95rem}
 .contact-card dt{color:var(--ink-soft)}
-.contact-card dd{margin:0;font-weight:500}
+.contact-card dd{margin:0;font-weight:500;overflow-wrap:anywhere}
 
 footer{padding:36px 0 48px;border-top:1px solid var(--line);font-size:.85rem;color:var(--ink-soft)}
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
@@ -267,10 +267,11 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
           <span data-i18n="ct.country">België</span>
         </address>
         <dl>
+          <dt data-i18n="ct.email">E-mail</dt><dd><a href="mailto:donne.chantaku.itb@gmail.com">donne.chantaku.itb@gmail.com</a></dd>
           <dt data-i18n="ct.vat">Btw-nummer</dt><dd>BE 0895.860.920</dd>
           <dt>RPR</dt><dd>Leuven</dd>
         </dl>
-        <p style="margin:22px 0 0"><a class="btn ghost" href="https://www.google.com/maps/search/?api=1&query=Martelarenplein+20E+3000+Leuven" target="_blank" rel="noopener" data-i18n="ct.map">Toon op kaart</a></p>
+        <p class="btns" style="margin:22px 0 0"><a class="btn primary" href="mailto:donne.chantaku.itb@gmail.com" data-i18n="ct.mail">Stuur een e-mail</a><a class="btn ghost" href="https://www.google.com/maps/search/?api=1&query=Martelarenplein+20E+3000+Leuven" target="_blank" rel="noopener" data-i18n="ct.map">Toon op kaart</a></p>
       </div>
     </div>
   </section>
@@ -279,7 +280,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
 <footer>
   <div class="wrap">
     <span>© <span id="yr">2026</span> Donné-Chantaku ITB (DCITB)</span>
-    <span>Martelarenplein 20E, 3000 Leuven<br>BE 0895.860.920 – RPR Leuven</span>
+    <span>Martelarenplein 20E, 3000 Leuven<br>BE 0895.860.920 – RPR Leuven<br><a href="mailto:donne.chantaku.itb@gmail.com">donne.chantaku.itb@gmail.com</a></span>
   </div>
 </footer>
 
@@ -314,7 +315,7 @@ nl:{
  "web.3.t":"Snel en mobielvriendelijk","web.3.d":"Goed leesbaar op elke gsm, tablet en computer.",
  "web.4.t":"Lage kosten","web.4.d":"Moderne hosting met minimale of geen maandelijkse kosten.",
  "ct.title":"Contact","ct.intro":"Hebt u een vraag over uw scheduling, een geplande migratie of een nieuwe website? Neem gerust contact op.",
- "ct.country":"België","ct.vat":"Btw-nummer","ct.map":"Toon op kaart"
+ "ct.country":"België","ct.vat":"Btw-nummer","ct.map":"Toon op kaart","ct.email":"E-mail","ct.mail":"Stuur een e-mail"
 },
 en:{
  "nav.services":"Services","nav.migration":"Migrations","nav.web":"Websites","nav.contact":"Contact",
@@ -345,7 +346,7 @@ en:{
  "web.3.t":"Fast and mobile-friendly","web.3.d":"Easy to read on any phone, tablet and computer.",
  "web.4.t":"Low running costs","web.4.d":"Modern hosting with minimal or no monthly fees.",
  "ct.title":"Contact","ct.intro":"Do you have a question about your scheduling, a planned migration or a new website? Feel free to get in touch.",
- "ct.country":"Belgium","ct.vat":"VAT number","ct.map":"Show on map"
+ "ct.country":"Belgium","ct.vat":"VAT number","ct.map":"Show on map","ct.email":"Email","ct.mail":"Send an email"
 },
 fr:{
  "nav.services":"Services","nav.migration":"Migrations","nav.web":"Sites web","nav.contact":"Contact",
@@ -376,7 +377,7 @@ fr:{
  "web.3.t":"Rapide et adapté au mobile","web.3.d":"Lisible sur tout smartphone, tablette et ordinateur.",
  "web.4.t":"Coûts réduits","web.4.d":"Un hébergement moderne avec peu ou pas de frais mensuels.",
  "ct.title":"Contact","ct.intro":"Une question sur votre ordonnancement, une migration prévue ou un nouveau site web ? N'hésitez pas à nous contacter.",
- "ct.country":"Belgique","ct.vat":"Numéro de TVA","ct.map":"Voir sur la carte"
+ "ct.country":"Belgique","ct.vat":"Numéro de TVA","ct.map":"Voir sur la carte","ct.email":"E-mail","ct.mail":"Envoyer un e-mail"
 }};
 const titles={nl:"DCITB – Workload automation consultancy | Leuven",en:"DCITB – Workload automation consultancy | Leuven",fr:"DCITB – Conseil en workload automation | Louvain"};
 function setLang(l){
