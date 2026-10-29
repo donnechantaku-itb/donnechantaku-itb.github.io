@@ -124,7 +124,7 @@ ol.steps p{margin:0;color:var(--ink-soft);font-size:.98rem}
 .panel:focus-visible{outline:3px solid var(--focus);outline-offset:6px;border-radius:6px}
 .panel h3.ptitle{font-size:clamp(1.4rem,2.6vw,1.9rem);line-height:1.15;font-weight:800;margin:0 0 12px;font-variation-settings:"wdth" 106}
 @media (prefers-reduced-motion:reduce){.panel{animation:none}}
-@media (max-width:600px){.tabs [role="tab"]{padding:10px 12px;font-size:.92rem}}
+@media (max-width:600px){.tabs{gap:2px}.tabs [role="tab"]{flex:1 1 0;min-width:0;white-space:normal;line-height:1.25;padding:10px 6px;font-size:.9rem;text-align:center}}
 
 /* contact */
 .contact-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:28px}
