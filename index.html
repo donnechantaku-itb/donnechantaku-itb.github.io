@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DCITB – Workload automation consultancy | Leuven</title>
+<meta name="description" content="Donné-Chantaku ITB (DCITB), Leuven: consultancy en migraties voor workload automation – Automic, AutoSys, Stonebranch, Enterprise Orchestrator, TWS en CA 7 – en websites voor kleine ondernemingen.">
+<meta property="og:title" content="DCITB – Workload automation consultancy">
+<meta property="og:description" content="Consultancy en migraties voor Automic, AutoSys, Stonebranch, Enterprise Orchestrator, TWS en CA 7. Websites voor kleine ondernemingen.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2314263F'/%3E%3Crect x='10' y='18' width='22' height='8' rx='2' fill='%2337A08E'/%3E%3Crect x='24' y='30' width='26' height='8' rx='2' fill='%2337A08E'/%3E%3Crect x='38' y='42' width='16' height='8' rx='2' fill='%23E8B33A'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#14263F;        /* deep operations navy */
+  --ink-soft:#4A5A70;
+  --paper:#F3F6F7;      /* cool console grey-white */
+  --panel:#FFFFFF;
+  --line:#D3DCE2;
+  --ok:#2E8C7C;         /* job ended OK */
+  --run:#E8B33A;        /* job running */
+  --wait:#9AA8B6;       /* waiting / on hold */
+  --focus:#2563EB;
+  --maxw:1120px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"Archivo",system-ui,sans-serif;font-size:1.0625rem;line-height:1.6;font-variation-settings:"wdth" 100}
+a{color:inherit}
+a:focus-visible,button:focus-visible{outline:3px solid var(--focus);outline-offset:3px;border-radius:4px}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+@media (max-width:600px){.wrap{padding:0 16px}}
+
+/* header */
+header.top{position:sticky;top:0;z-index:10;background:rgba(243,246,247,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:24px;height:68px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand svg{flex:none}
+.brand b{font-weight:800;font-size:1.25rem;letter-spacing:.02em;font-variation-settings:"wdth" 118}
+.brand span{display:block;font-size:.75rem;color:var(--ink-soft);line-height:1.2}
+nav.main{margin-left:auto;display:flex;gap:22px}
+nav.main a{text-decoration:none;font-weight:500;font-size:.95rem;color:var(--ink-soft)}
+nav.main a:hover{color:var(--ink)}
+.lang{display:flex;border:1px solid var(--line);border-radius:999px;padding:3px;background:var(--panel)}
+.lang button{border:0;background:none;font:inherit;font-size:.82rem;font-weight:600;color:var(--ink-soft);padding:4px 10px;border-radius:999px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--ink);color:#fff}
+@media (max-width:820px){nav.main{display:none}.lang{margin-left:auto}.brand span{display:none}}
+
+/* hero */
+.hero{padding:72px 0 40px}
+.hero h1{font-size:clamp(2.4rem,6.2vw,4.6rem);line-height:1.02;font-weight:800;margin:0 0 22px;max-width:16ch;font-variation-settings:"wdth" 112;letter-spacing:-.01em}
+.hero p.lead{font-size:clamp(1.05rem,1.6vw,1.25rem);max-width:60ch;color:var(--ink-soft);margin:0 0 30px}
+.btns{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-block;padding:13px 22px;border-radius:8px;font-weight:600;text-decoration:none;border:2px solid var(--ink)}
+.btn.primary{background:var(--ink);color:#fff}
+.btn.primary:hover{background:#0c1a2d}
+.btn.ghost:hover{background:#fff}
+
+/* batch timeline — the one memorable element */
+.run{margin-top:56px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px 22px 16px}
+.run-head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;margin-bottom:14px}
+.run-head strong{font-size:.95rem}
+.legend{display:flex;gap:16px;font-size:.82rem;color:var(--ink-soft)}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.grid{position:relative;display:grid;grid-template-columns:170px 1fr;row-gap:8px}
+.axis{grid-column:2;display:flex;justify-content:space-between;font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--ink-soft);border-bottom:1px solid var(--line);padding-bottom:4px;margin-bottom:4px}
+.job{font-family:"IBM Plex Mono",monospace;font-size:.78rem;align-self:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding-right:10px}
+.lane{position:relative;height:26px;background:repeating-linear-gradient(90deg,transparent 0 calc(12.5% - 1px),var(--line) calc(12.5% - 1px) 12.5%);border-radius:4px}
+.bar{position:absolute;top:3px;bottom:3px;border-radius:4px;background:var(--ok);transform-origin:left center;animation:grow .7s cubic-bezier(.2,.7,.2,1) both}
+.bar.running{background:repeating-linear-gradient(-45deg,var(--run) 0 8px,#F2C969 8px 16px)}
+.bar.waiting{background:transparent;border:2px dashed var(--wait)}
+.now{position:absolute;top:22px;bottom:0;width:2px;background:var(--run);left:calc(170px + (100% - 170px) * .79);animation:fadein .4s 3.4s both}
+.now::after{content:"04:20";position:absolute;top:-20px;left:-18px;font-family:"IBM Plex Mono",monospace;font-size:.7rem;color:#9a6f05;background:var(--panel);padding:0 3px}
+@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){.bar,.now{animation:none}}
+.run figcaption{font-size:.82rem;color:var(--ink-soft);margin-top:12px}
+@media (max-width:600px){.grid{grid-template-columns:104px 1fr}.job{font-size:.66rem}.now{left:calc(104px + (100% - 104px) * .79)}.run{padding:16px 12px 12px}}
+
+/* sections */
+section.block{padding:84px 0;border-top:1px solid var(--line)}
+section.block h2{font-size:clamp(1.8rem,3.6vw,2.6rem);line-height:1.1;font-weight:800;margin:0 0 16px;font-variation-settings:"wdth" 108;max-width:22ch}
+section.block .intro{max-width:62ch;color:var(--ink-soft);margin:0 0 40px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+@media (max-width:820px){.two{grid-template-columns:1fr;gap:32px}}
+h3{font-size:1.1rem;margin:0 0 6px}
+ul.plain{list-style:none;margin:0;padding:0}
+ul.plain li{padding:16px 0;border-bottom:1px solid var(--line)}
+ul.plain li:first-child{border-top:1px solid var(--line)}
+ul.plain li p{margin:0;color:var(--ink-soft);font-size:.98rem}
+
+.products{display:flex;flex-wrap:wrap;gap:10px;align-content:flex-start}
+.products span{font-weight:700;font-size:clamp(1.2rem,2.2vw,1.55rem);padding:10px 18px;border:2px solid var(--ink);border-radius:8px;background:var(--panel);font-variation-settings:"wdth" 110}
+.products-note{font-size:.9rem;color:var(--ink-soft);margin-top:16px}
+
+/* migration */
+.matrix{border-collapse:separate;border-spacing:4px;font-size:.8rem;margin-top:4px}
+.matrix th{font-weight:600;color:var(--ink-soft);padding:4px 6px;white-space:nowrap}
+.matrix thead th{writing-mode:vertical-rl;transform:rotate(180deg);height:92px;text-align:left}
+.matrix tbody th{text-align:right}
+.matrix td{width:34px;height:34px;border-radius:6px;background:var(--ok);}
+.matrix td.self{background:transparent;border:1px solid var(--line)}
+.matrix caption{caption-side:bottom;text-align:left;font-size:.82rem;color:var(--ink-soft);padding-top:10px}
+.corner{font-size:.72rem;color:var(--ink-soft)}
+ol.steps{list-style:none;counter-reset:s;margin:0;padding:0}
+ol.steps li{counter-increment:s;position:relative;padding:0 0 26px 54px}
+ol.steps li::before{content:counter(s);position:absolute;left:0;top:0;width:36px;height:36px;border-radius:50%;border:2px solid var(--ink);display:grid;place-items:center;font-weight:700}
+ol.steps li:not(:last-child)::after{content:"";position:absolute;left:17px;top:40px;bottom:4px;width:2px;background:var(--line)}
+ol.steps p{margin:0;color:var(--ink-soft);font-size:.98rem}
+
+/* web */
+.web{background:var(--ink);color:#fff;border-top:0}
+.web h2{color:#fff}
+.web .intro,.web ul.plain li p{color:#C3CEDB}
+.web ul.plain li{border-color:#2D4260}
+.web .btn{border-color:#fff;color:#fff}
+.web .btn:hover{background:#fff;color:var(--ink)}
+
+/* contact */
+.contact-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:28px}
+.contact-card address{font-style:normal;font-size:1.15rem;line-height:1.7}
+.contact-card dl{display:grid;grid-template-columns:auto 1fr;gap:6px 18px;margin:20px 0 0;font-size:.95rem}
+.contact-card dt{color:var(--ink-soft)}
+.contact-card dd{margin:0;font-weight:500}
+
+footer{padding:36px 0 48px;border-top:1px solid var(--line);font-size:.85rem;color:var(--ink-soft)}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="DCITB">
+      <svg width="34" height="34" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="12" fill="#14263F"/><rect x="10" y="18" width="22" height="8" rx="2" fill="#37A08E"/><rect x="24" y="30" width="26" height="8" rx="2" fill="#37A08E"/><rect x="38" y="42" width="16" height="8" rx="2" fill="#E8B33A"/></svg>
+      <div><b>DCITB</b><span>Donné-Chantaku ITB</span></div>
+    </a>
+    <nav class="main" aria-label="Menu">
+      <a href="#diensten" data-i18n="nav.services">Diensten</a>
+      <a href="#migratie" data-i18n="nav.migration">Migraties</a>
+      <a href="#websites" data-i18n="nav.web">Websites</a>
+      <a href="#contact" data-i18n="nav.contact">Contact</a>
+    </nav>
+    <div class="lang" role="group" aria-label="Taal / Language / Langue">
+      <button type="button" data-lang="nl" aria-pressed="true">NL</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      <button type="button" data-lang="fr" aria-pressed="false">FR</button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <h1 data-i18n="hero.title">Batchverwerking die gewoon draait.</h1>
+      <p class="lead" data-i18n="hero.lead">DCITB is een consultancy uit Leuven voor workload automation. We ontwerpen, beheren, auditen en migreren jobscheduling op Automic, AutoSys, Stonebranch, Enterprise Orchestrator, TWS en CA 7.</p>
+      <div class="btns">
+        <a class="btn primary" href="#contact" data-i18n="hero.cta">Neem contact op</a>
+        <a class="btn ghost" href="#diensten" data-i18n="hero.cta2">Bekijk onze diensten</a>
+      </div>
+
+      <figure class="run" aria-labelledby="run-cap">
+        <div class="run-head">
+          <strong data-i18n="run.title">Nachtelijke batchrun</strong>
+          <div class="legend" aria-hidden="true">
+            <span><i style="background:var(--ok)"></i><span data-i18n="run.ok">Afgewerkt</span></span>
+            <span><i style="background:var(--run)"></i><span data-i18n="run.running">Loopt</span></span>
+            <span><i style="border:2px dashed var(--wait)"></i><span data-i18n="run.waiting">Wacht</span></span>
+          </div>
+        </div>
+        <div class="grid" aria-hidden="true">
+          <div class="axis"><span>22:00</span><span>00:00</span><span>02:00</span><span>04:00</span><span>06:00</span></div>
+          <div class="job">FTP_INBOUND_RECV</div><div class="lane"><div class="bar" style="left:0;width:8.3%;animation-delay:.2s"></div></div>
+          <div class="job">ERP_EOD_EXTRACT</div><div class="lane"><div class="bar" style="left:9.4%;width:21.9%;animation-delay:.7s"></div></div>
+          <div class="job">DWH_STAGE_LOAD</div><div class="lane"><div class="bar" style="left:32.3%;width:19.8%;animation-delay:1.3s"></div></div>
+          <div class="job">DWH_CORE_LOAD</div><div class="lane"><div class="bar" style="left:53.1%;width:19.8%;animation-delay:1.9s"></div></div>
+          <div class="job">REPORT_DAILY</div><div class="lane"><div class="bar running" style="left:75%;width:9.4%;animation-delay:2.5s"></div></div>
+          <div class="job">ARCHIVE_BACKUP</div><div class="lane"><div class="bar waiting" style="left:87.5%;width:6.3%;animation-delay:3s"></div></div>
+          <div class="now"></div>
+        </div>
+        <figcaption id="run-cap" data-i18n="run.caption">Elke job start pas als zijn voorganger correct is afgelopen. Daar zorgen wij voor: betrouwbare afhankelijkheden, kalenders en opvolging.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="block" id="diensten">
+    <div class="wrap">
+      <h2 data-i18n="svc.title">Workload automation consultancy</h2>
+      <p class="intro" data-i18n="svc.intro">Van één kritieke batchketen tot een volledig schedulingplatform: we helpen bij ontwerp, beheer en verbetering, met oog voor stabiliteit en controleerbaarheid.</p>
+      <div class="two">
+        <ul class="plain">
+          <li><h3 data-i18n="svc.1.t">Ontwerp en implementatie</h3><p data-i18n="svc.1.d">Jobdefinities, afhankelijkheden, kalenders en agents opgezet volgens de beste praktijken van het platform.</p></li>
+          <li><h3 data-i18n="svc.2.t">Audit en review</h3><p data-i18n="svc.2.d">Grondige controle van bestaande jobdefinities en kalenderlogica, met concrete verbeterpunten.</p></li>
+          <li><h3 data-i18n="svc.3.t">Change management</h3><p data-i18n="svc.3.d">Voorbereiding en controle van wijzigingen voor het CAB, zodat releases voorspelbaar verlopen.</p></li>
+          <li><h3 data-i18n="svc.4.t">Beheer en troubleshooting</h3><p data-i18n="svc.4.d">Analyse van vastgelopen of trage batchketens en ondersteuning van uw operationele teams.</p></li>
+        </ul>
+        <div>
+          <div class="products" aria-label="Platformen">
+            <span>Automic</span><span>AutoSys</span><span>Stonebranch</span><span>Enterprise Orchestrator</span><span>TWS</span><span>CA 7</span>
+          </div>
+          <p class="products-note" data-i18n="svc.note">Platformen waarop we werken. TWS staat voor IBM (Tivoli) Workload Scheduler, Stonebranch voor Universal Automation Center (UAC).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="migratie">
+    <div class="wrap">
+      <h2 data-i18n="mig.title">Migraties tussen schedulingplatformen</h2>
+      <p class="intro" data-i18n="mig.intro">Overstappen naar een ander platform raakt elke batchketen in uw organisatie. We begeleiden migraties van en naar elk van deze producten, zodat de overstap zonder verrassingen verloopt.</p>
+      <div class="two">
+        <ol class="steps">
+          <li><h3 data-i18n="mig.1.t">Inventaris en analyse</h3><p data-i18n="mig.1.d">Alle jobs, afhankelijkheden, kalenders en uitzonderingen in kaart gebracht.</p></li>
+          <li><h3 data-i18n="mig.2.t">Conversie en mapping</h3><p data-i18n="mig.2.d">Definities omgezet naar het nieuwe platform, met een duidelijke mapping van elk concept.</p></li>
+          <li><h3 data-i18n="mig.3.t">Test en parallelle run</h3><p data-i18n="mig.3.d">Oud en nieuw naast elkaar vergeleken tot de resultaten overeenkomen.</p></li>
+          <li><h3 data-i18n="mig.4.t">Overschakeling en nazorg</h3><p data-i18n="mig.4.d">Gecontroleerde cutover en opvolging tot alles stabiel draait.</p></li>
+        </ol>
+        <div style="overflow-x:auto">
+          <table class="matrix">
+            <caption data-i18n="mig.caption">Elke combinatie van bron (rij) en doel (kolom) wordt ondersteund.</caption>
+            <thead><tr><th class="corner"></th><th scope="col">Automic</th><th scope="col">AutoSys</th><th scope="col">Stonebranch</th><th scope="col">Ent. Orchestrator</th><th scope="col">TWS</th><th scope="col">CA 7</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Automic</th><td class="self"></td><td></td><td></td><td></td><td></td><td></td></tr>
+              <tr><th scope="row">AutoSys</th><td></td><td class="self"></td><td></td><td></td><td></td><td></td></tr>
+              <tr><th scope="row">Stonebranch</th><td></td><td></td><td class="self"></td><td></td><td></td><td></td></tr>
+              <tr><th scope="row">Ent. Orchestrator</th><td></td><td></td><td></td><td class="self"></td><td></td><td></td></tr>
+              <tr><th scope="row">TWS</th><td></td><td></td><td></td><td></td><td class="self"></td><td></td></tr>
+              <tr><th scope="row">CA 7</th><td></td><td></td><td></td><td></td><td></td><td class="self"></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block web" id="websites">
+    <div class="wrap two">
+      <div>
+        <h2 data-i18n="web.title">Websites voor kleine ondernemingen</h2>
+        <p class="intro" data-i18n="web.intro">Een verzorgde, snelle website zonder gedoe. We bouwen en onderhouden websites voor zelfstandigen en kleine bedrijven, in één of meerdere talen, zoals deze site.</p>
+        <a class="btn" href="#contact" data-i18n="web.cta">Vraag een voorstel aan</a>
+      </div>
+      <ul class="plain">
+        <li><h3 data-i18n="web.1.t">Ontwerp op maat</h3><p data-i18n="web.1.d">Geen standaardsjabloon, maar een site die bij uw zaak past.</p></li>
+        <li><h3 data-i18n="web.2.t">Meertalig</h3><p data-i18n="web.2.d">Nederlands, Frans en Engels op één site.</p></li>
+        <li><h3 data-i18n="web.3.t">Snel en mobielvriendelijk</h3><p data-i18n="web.3.d">Goed leesbaar op elke gsm, tablet en computer.</p></li>
+        <li><h3 data-i18n="web.4.t">Lage kosten</h3><p data-i18n="web.4.d">Moderne hosting met minimale of geen maandelijkse kosten.</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block" id="contact">
+    <div class="wrap two">
+      <div>
+        <h2 data-i18n="ct.title">Contact</h2>
+        <p class="intro" data-i18n="ct.intro">Hebt u een vraag over uw scheduling, een geplande migratie of een nieuwe website? Neem gerust contact op.</p>
+      </div>
+      <div class="contact-card">
+        <address>
+          <strong>Donné-Chantaku ITB</strong><br>
+          Martelarenplein 20E<br>
+          3000 Leuven<br>
+          <span data-i18n="ct.country">België</span>
+        </address>
+        <dl>
+          <dt data-i18n="ct.vat">Btw-nummer</dt><dd>BE 0895.860.920</dd>
+          <dt>RPR</dt><dd>Leuven</dd>
+        </dl>
+        <p style="margin:22px 0 0"><a class="btn ghost" href="https://www.google.com/maps/search/?api=1&query=Martelarenplein+20E+3000+Leuven" target="_blank" rel="noopener" data-i18n="ct.map">Toon op kaart</a></p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="yr">2026</span> Donné-Chantaku ITB (DCITB)</span>
+    <span>Martelarenplein 20E, 3000 Leuven<br>BE 0895.860.920 – RPR Leuven</span>
+  </div>
+</footer>
+
+<script>
+const T = {
+nl:{
+ "nav.services":"Diensten","nav.migration":"Migraties","nav.web":"Websites","nav.contact":"Contact",
+ "hero.title":"Batchverwerking die gewoon draait.",
+ "hero.lead":"DCITB is een consultancy uit Leuven voor workload automation. We ontwerpen, beheren, auditen en migreren jobscheduling op Automic, AutoSys, Stonebranch, Enterprise Orchestrator, TWS en CA 7.",
+ "hero.cta":"Neem contact op","hero.cta2":"Bekijk onze diensten",
+ "run.title":"Nachtelijke batchrun","run.ok":"Afgewerkt","run.running":"Loopt","run.waiting":"Wacht",
+ "run.caption":"Elke job start pas als zijn voorganger correct is afgelopen. Daar zorgen wij voor: betrouwbare afhankelijkheden, kalenders en opvolging.",
+ "svc.title":"Workload automation consultancy",
+ "svc.intro":"Van één kritieke batchketen tot een volledig schedulingplatform: we helpen bij ontwerp, beheer en verbetering, met oog voor stabiliteit en controleerbaarheid.",
+ "svc.1.t":"Ontwerp en implementatie","svc.1.d":"Jobdefinities, afhankelijkheden, kalenders en agents opgezet volgens de beste praktijken van het platform.",
+ "svc.2.t":"Audit en review","svc.2.d":"Grondige controle van bestaande jobdefinities en kalenderlogica, met concrete verbeterpunten.",
+ "svc.3.t":"Change management","svc.3.d":"Voorbereiding en controle van wijzigingen voor het CAB, zodat releases voorspelbaar verlopen.",
+ "svc.4.t":"Beheer en troubleshooting","svc.4.d":"Analyse van vastgelopen of trage batchketens en ondersteuning van uw operationele teams.",
+ "svc.note":"Platformen waarop we werken. TWS staat voor IBM (Tivoli) Workload Scheduler, Stonebranch voor Universal Automation Center (UAC).",
+ "mig.title":"Migraties tussen schedulingplatformen",
+ "mig.intro":"Overstappen naar een ander platform raakt elke batchketen in uw organisatie. We begeleiden migraties van en naar elk van deze producten, zodat de overstap zonder verrassingen verloopt.",
+ "mig.1.t":"Inventaris en analyse","mig.1.d":"Alle jobs, afhankelijkheden, kalenders en uitzonderingen in kaart gebracht.",
+ "mig.2.t":"Conversie en mapping","mig.2.d":"Definities omgezet naar het nieuwe platform, met een duidelijke mapping van elk concept.",
+ "mig.3.t":"Test en parallelle run","mig.3.d":"Oud en nieuw naast elkaar vergeleken tot de resultaten overeenkomen.",
+ "mig.4.t":"Overschakeling en nazorg","mig.4.d":"Gecontroleerde cutover en opvolging tot alles stabiel draait.",
+ "mig.caption":"Elke combinatie van bron (rij) en doel (kolom) wordt ondersteund.",
+ "web.title":"Websites voor kleine ondernemingen",
+ "web.intro":"Een verzorgde, snelle website zonder gedoe. We bouwen en onderhouden websites voor zelfstandigen en kleine bedrijven, in één of meerdere talen, zoals deze site.",
+ "web.cta":"Vraag een voorstel aan",
+ "web.1.t":"Ontwerp op maat","web.1.d":"Geen standaardsjabloon, maar een site die bij uw zaak past.",
+ "web.2.t":"Meertalig","web.2.d":"Nederlands, Frans en Engels op één site.",
+ "web.3.t":"Snel en mobielvriendelijk","web.3.d":"Goed leesbaar op elke gsm, tablet en computer.",
+ "web.4.t":"Lage kosten","web.4.d":"Moderne hosting met minimale of geen maandelijkse kosten.",
+ "ct.title":"Contact","ct.intro":"Hebt u een vraag over uw scheduling, een geplande migratie of een nieuwe website? Neem gerust contact op.",
+ "ct.country":"België","ct.vat":"Btw-nummer","ct.map":"Toon op kaart"
+},
+en:{
+ "nav.services":"Services","nav.migration":"Migrations","nav.web":"Websites","nav.contact":"Contact",
+ "hero.title":"Batch schedules that simply run.",
+ "hero.lead":"DCITB is a Leuven-based workload automation consultancy. We design, manage, audit and migrate job scheduling on Automic, AutoSys, Stonebranch, Enterprise Orchestrator, TWS and CA 7.",
+ "hero.cta":"Get in touch","hero.cta2":"See our services",
+ "run.title":"Overnight batch run","run.ok":"Completed","run.running":"Running","run.waiting":"Waiting",
+ "run.caption":"Each job starts only when its predecessor has ended successfully. That is what we take care of: reliable dependencies, calendars and monitoring.",
+ "svc.title":"Workload automation consultancy",
+ "svc.intro":"From a single critical batch chain to a complete scheduling platform: we help with design, operations and improvement, with a focus on stability and auditability.",
+ "svc.1.t":"Design and implementation","svc.1.d":"Job definitions, dependencies, calendars and agents set up according to the platform's best practices.",
+ "svc.2.t":"Audit and review","svc.2.d":"Thorough review of existing job definitions and calendar logic, with concrete points for improvement.",
+ "svc.3.t":"Change management","svc.3.d":"Preparation and validation of changes for the CAB, so releases go as planned.",
+ "svc.4.t":"Operations and troubleshooting","svc.4.d":"Analysis of stuck or slow batch chains and support for your operations teams.",
+ "svc.note":"Platforms we work with. TWS stands for IBM (Tivoli) Workload Scheduler, Stonebranch for Universal Automation Center (UAC).",
+ "mig.title":"Migrations between scheduling platforms",
+ "mig.intro":"Moving to another platform touches every batch chain in your organisation. We guide migrations from and to each of these products, so the switch happens without surprises.",
+ "mig.1.t":"Inventory and analysis","mig.1.d":"All jobs, dependencies, calendars and exceptions mapped out.",
+ "mig.2.t":"Conversion and mapping","mig.2.d":"Definitions converted to the new platform, with a clear mapping of every concept.",
+ "mig.3.t":"Testing and parallel run","mig.3.d":"Old and new compared side by side until the results match.",
+ "mig.4.t":"Cutover and aftercare","mig.4.d":"A controlled cutover and follow-up until everything runs stably.",
+ "mig.caption":"Every combination of source (row) and target (column) is supported.",
+ "web.title":"Websites for small businesses",
+ "web.intro":"A polished, fast website without the hassle. We build and maintain websites for freelancers and small companies, in one or more languages, like this one.",
+ "web.cta":"Request a proposal",
+ "web.1.t":"Custom design","web.1.d":"Not a standard template, but a site that fits your business.",
+ "web.2.t":"Multilingual","web.2.d":"Dutch, French and English on one site.",
+ "web.3.t":"Fast and mobile-friendly","web.3.d":"Easy to read on any phone, tablet and computer.",
+ "web.4.t":"Low running costs","web.4.d":"Modern hosting with minimal or no monthly fees.",
+ "ct.title":"Contact","ct.intro":"Do you have a question about your scheduling, a planned migration or a new website? Feel free to get in touch.",
+ "ct.country":"Belgium","ct.vat":"VAT number","ct.map":"Show on map"
+},
+fr:{
+ "nav.services":"Services","nav.migration":"Migrations","nav.web":"Sites web","nav.contact":"Contact",
+ "hero.title":"Des traitements batch qui tournent, tout simplement.",
+ "hero.lead":"DCITB est un cabinet de conseil en workload automation basé à Louvain. Nous concevons, gérons, auditons et migrons l'ordonnancement sur Automic, AutoSys, Stonebranch, Enterprise Orchestrator, TWS et CA 7.",
+ "hero.cta":"Contactez-nous","hero.cta2":"Découvrir nos services",
+ "run.title":"Batch de nuit","run.ok":"Terminé","run.running":"En cours","run.waiting":"En attente",
+ "run.caption":"Chaque job ne démarre que lorsque son prédécesseur s'est terminé correctement. C'est notre métier : des dépendances, des calendriers et un suivi fiables.",
+ "svc.title":"Conseil en workload automation",
+ "svc.intro":"D'une seule chaîne batch critique à une plateforme d'ordonnancement complète : nous intervenons en conception, exploitation et amélioration, avec un souci de stabilité et de traçabilité.",
+ "svc.1.t":"Conception et mise en œuvre","svc.1.d":"Définitions de jobs, dépendances, calendriers et agents configurés selon les bonnes pratiques de la plateforme.",
+ "svc.2.t":"Audit et revue","svc.2.d":"Contrôle approfondi des définitions de jobs et de la logique des calendriers, avec des recommandations concrètes.",
+ "svc.3.t":"Gestion des changements","svc.3.d":"Préparation et validation des changements pour le CAB, pour des mises en production prévisibles.",
+ "svc.4.t":"Exploitation et dépannage","svc.4.d":"Analyse des chaînes batch bloquées ou lentes et soutien à vos équipes d'exploitation.",
+ "svc.note":"Plateformes sur lesquelles nous travaillons. TWS désigne IBM (Tivoli) Workload Scheduler, Stonebranch désigne Universal Automation Center (UAC).",
+ "mig.title":"Migrations entre plateformes d'ordonnancement",
+ "mig.intro":"Changer de plateforme touche chaque chaîne batch de votre organisation. Nous accompagnons les migrations depuis et vers chacun de ces produits, pour une transition sans surprises.",
+ "mig.1.t":"Inventaire et analyse","mig.1.d":"Recensement de tous les jobs, dépendances, calendriers et exceptions.",
+ "mig.2.t":"Conversion et correspondance","mig.2.d":"Définitions converties vers la nouvelle plateforme, avec une correspondance claire de chaque concept.",
+ "mig.3.t":"Tests et exécution en parallèle","mig.3.d":"Ancien et nouveau comparés côte à côte jusqu'à obtenir les mêmes résultats.",
+ "mig.4.t":"Bascule et suivi","mig.4.d":"Une bascule maîtrisée et un suivi jusqu'à un fonctionnement stable.",
+ "mig.caption":"Toutes les combinaisons source (ligne) et cible (colonne) sont prises en charge.",
+ "web.title":"Sites web pour petites entreprises",
+ "web.intro":"Un site soigné et rapide, sans tracas. Nous créons et entretenons des sites pour indépendants et petites entreprises, en une ou plusieurs langues, comme celui-ci.",
+ "web.cta":"Demander une proposition",
+ "web.1.t":"Design sur mesure","web.1.d":"Pas un modèle standard, mais un site adapté à votre activité.",
+ "web.2.t":"Multilingue","web.2.d":"Néerlandais, français et anglais sur un seul site.",
+ "web.3.t":"Rapide et adapté au mobile","web.3.d":"Lisible sur tout smartphone, tablette et ordinateur.",
+ "web.4.t":"Coûts réduits","web.4.d":"Un hébergement moderne avec peu ou pas de frais mensuels.",
+ "ct.title":"Contact","ct.intro":"Une question sur votre ordonnancement, une migration prévue ou un nouveau site web ? N'hésitez pas à nous contacter.",
+ "ct.country":"Belgique","ct.vat":"Numéro de TVA","ct.map":"Voir sur la carte"
+}};
+const titles={nl:"DCITB – Workload automation consultancy | Leuven",en:"DCITB – Workload automation consultancy | Leuven",fr:"DCITB – Conseil en workload automation | Louvain"};
+function setLang(l){
+  if(!T[l]) l="nl";
+  document.documentElement.lang=l;
+  document.querySelectorAll("[data-i18n]").forEach(el=>{const v=T[l][el.dataset.i18n]; if(v) el.textContent=v;});
+  document.querySelectorAll(".lang button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.lang===l));
+  document.title=titles[l];
+  try{localStorage.setItem("dcitb-lang",l)}catch(e){}
+  const u=new URL(location); u.searchParams.set("lang",l); history.replaceState(null,"",u);
+}
+document.querySelectorAll(".lang button").forEach(b=>b.addEventListener("click",()=>setLang(b.dataset.lang)));
+(function(){
+  let l=new URLSearchParams(location.search).get("lang");
+  if(!l){try{l=localStorage.getItem("dcitb-lang")}catch(e){}}
+  if(!l){const n=(navigator.language||"nl").slice(0,2); l=T[n]?n:"nl";}
+  if(l!=="nl") setLang(l); else document.querySelectorAll(".lang button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.lang==="nl"));
+})();
+document.getElementById("yr").textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
